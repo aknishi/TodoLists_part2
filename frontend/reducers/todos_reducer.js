@@ -1,24 +1,8 @@
 import { RECEIVE_TODOS, RECEIVE_TODO, REMOVE_TODO } from '../actions/todo_actions';
 import merge from 'lodash/merge';
 
-const initialState = {
-  1: {
-    id: 1,
-    title: 'wash car',
-    body: 'with soap',
-    done: false
-  },
-  2: {
-    id: 2,
-    title: 'wash dog',
-    body: 'with shampoo',
-    done: true
-  },
-};
-
-const todosReducer = (state = initialState, action) => {
+const todosReducer = (state = {}, action) => {
   let nextState = {};
-
   switch(action.type){
     case RECEIVE_TODOS:
       action.todos.forEach( todo => {
@@ -26,7 +10,7 @@ const todosReducer = (state = initialState, action) => {
       });
       return nextState;
     case RECEIVE_TODO:
-      const newTodo = {[action.todo.id]: action.todo};
+      const newTodo = { [action.todo.id]: action.todo };
       return merge({}, state, newTodo);
     case REMOVE_TODO:
       nextState = merge({}, state);
@@ -38,3 +22,18 @@ const todosReducer = (state = initialState, action) => {
 };
 
 export default todosReducer;
+
+// const initialState = {
+//   1: {
+//     id: 1,
+//     title: 'wash car',
+//     body: 'with soap',
+//     done: false
+//   },
+//   2: {
+//     id: 2,
+//     title: 'wash dog',
+//     body: 'with shampoo',
+//     done: true
+//   },
+// };

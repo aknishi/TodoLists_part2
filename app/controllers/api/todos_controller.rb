@@ -1,7 +1,7 @@
 class Api::TodosController < ApplicationController
 
   def index
-    @todos = Todo.all
+    render json: Todo.all
   end
 
   def show
@@ -19,7 +19,7 @@ class Api::TodosController < ApplicationController
 
   def update
     @todo = Todo.find(params[:id])
-    if @todo.update_attributes
+    if @todo.update(todo_params)
       render json: @todo
     else
       render json: @todo.errors.full_messages, status: 422
