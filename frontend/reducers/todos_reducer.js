@@ -12,6 +12,7 @@ const todosReducer = (state = {}, action) => {
     case RECEIVE_TODO:
       const newTodo = { [action.todo.id]: action.todo };
       return merge({}, state, newTodo);
+      // new state => {1: todo1, 2:todo2} vs {todos: {1: todo1, 2: todo2}}
     case REMOVE_TODO:
       nextState = merge({}, state);
       delete nextState[action.todo.id];

@@ -7,6 +7,7 @@ class TodoListItem extends React.Component {
   }
   render() {
     const { todo } = this.props;
+    // const todo = this.props(todo) ???
     const { title, done } = todo;
 
     return (
